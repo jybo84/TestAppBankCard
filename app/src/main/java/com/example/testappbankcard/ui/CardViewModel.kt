@@ -40,7 +40,7 @@ class CardViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.let { card ->
                         _uiState.value = CardUiState.Success(card)
-                        // Добавляем в историю
+
                         addToHistory(card)
                     } ?: run {
                         _uiState.value = CardUiState.Error("Не удалось получить данные карты")
@@ -56,11 +56,11 @@ class CardViewModel : ViewModel() {
     
     private fun addToHistory(card: Card) {
         val currentHistory = _searchHistory.value.toMutableList()
-        // Удаляем дубликаты
+
         currentHistory.removeAll { it.id == card.id }
-        // Добавляем в начало списка
+
         currentHistory.add(0, card)
-        // Ограничиваем историю 10 элементами
+
         if (currentHistory.size > 10) {
             currentHistory.removeAt(currentHistory.size - 1)
         }

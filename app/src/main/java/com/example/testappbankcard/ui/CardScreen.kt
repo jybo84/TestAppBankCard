@@ -43,7 +43,7 @@ fun CardScreen(viewModel: CardViewModel) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        // Основной контент
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
