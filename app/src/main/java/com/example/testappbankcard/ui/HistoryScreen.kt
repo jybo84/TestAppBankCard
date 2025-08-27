@@ -109,7 +109,7 @@ private fun HistoryCardItem(card: Card) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = card.scheme.ifEmpty { "Неизвестная схема" },
+                    text = card.scheme.ifEmpty { "Неизвестная система" },
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
