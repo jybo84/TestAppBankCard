@@ -1,8 +1,10 @@
-package com.example.testappbankcard.ui.screens
+package com.example.testappbankcard.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testappbankcard.data.CardRepository
+import com.example.testappbankcard.model.Card
+import com.example.testappbankcard.ui.state.CardUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,6 +16,9 @@ class CardViewModel : ViewModel() {
     
     private val _uiState = MutableStateFlow<CardUiState>(CardUiState.Initial)
     val uiState: StateFlow<CardUiState> = _uiState.asStateFlow()
+    
+    private val _searchHistory = MutableStateFlow<List<Card>>(emptyList())
+    val searchHistory: StateFlow<List<Card>> = _searchHistory.asStateFlow()
     
     fun loadCardInfo(cardNumber: String) {
         if (cardNumber.isBlank()) {
@@ -35,6 +40,8 @@ class CardViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     response.body()?.let { card ->
                         _uiState.value = CardUiState.Success(card)
+                        // Добавляем в историю
+                        addToHistory(card)
                     } ?: run {
                         _uiState.value = CardUiState.Error("Не удалось получить данные карты")
                     }
@@ -45,6 +52,23 @@ class CardViewModel : ViewModel() {
                 _uiState.value = CardUiState.Error("Ошибка сети: ${e.message}")
             }
         }
+    }
+    
+    private fun addToHistory(card: Card) {
+        val currentHistory = _searchHistory.value.toMutableList()
+        // Удаляем дубликаты
+        currentHistory.removeAll { it.id == card.id }
+        // Добавляем в начало списка
+        currentHistory.add(0, card)
+        // Ограничиваем историю 10 элементами
+        if (currentHistory.size > 10) {
+            currentHistory.removeAt(currentHistory.size - 1)
+        }
+        _searchHistory.value = currentHistory
+    }
+    
+    fun clearHistory() {
+        _searchHistory.value = emptyList()
     }
     
     fun resetState() {
