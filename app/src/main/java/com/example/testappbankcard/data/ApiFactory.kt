@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiFactory {
-    private const val BASE_URL = "https://lookup.binlist.net/ "
+    private const val BASE_URL = "https://lookup.binlist.net/"
 
      val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

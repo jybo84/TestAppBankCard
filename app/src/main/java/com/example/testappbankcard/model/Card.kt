@@ -6,7 +6,6 @@ class Card(
     val scheme: String = "",
     val type: String? = null,
     val brand: String? = null,
-    val prepaid: Boolean? = null,
     val country: CountryInfo? = null,
     val bank: BankInfo? = null
 ) {
@@ -14,8 +13,6 @@ class Card(
     data class CountryInfo(
         val name: String? = null,
         val currency: String? = null,
-        val latitude: Double? = null,
-        val longitude: Double? = null
     )
 
     data class BankInfo(
