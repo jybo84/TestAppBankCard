@@ -1,4 +1,4 @@
-package com.example.testappbankcard.ui.screens
+package com.example.testappbankcard.ui.state
 
 import com.example.testappbankcard.model.Card
 
