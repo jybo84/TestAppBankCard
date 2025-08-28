@@ -44,17 +44,17 @@ fun ErrorView(
                     fontSize = 20.sp,
                     color = Color.Red
                 )
-                
+
                 Spacer(modifier = Modifier.height(8.dp))
-                
+
                 Text(
                     text = message,
                     textAlign = TextAlign.Center,
                     color = Color.DarkGray
                 )
-                
+
                 Spacer(modifier = Modifier.height(16.dp))
-                
+
                 Button(onClick = onRetry) {
                     Text("Повторить")
                 }
@@ -62,4 +62,3 @@ fun ErrorView(
         }
     }
 }
-

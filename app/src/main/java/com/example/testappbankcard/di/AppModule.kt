@@ -26,8 +26,8 @@ object AppModule {
             CardDatabase::class.java,
             "card_database"
         )
-        .fallbackToDestructiveMigration()
-        .build()
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
@@ -46,4 +46,3 @@ object AppModule {
         return CardRepository(localRepository)
     }
 }
-

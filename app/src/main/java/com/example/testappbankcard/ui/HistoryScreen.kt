@@ -28,7 +28,7 @@ import com.example.testappbankcard.model.Card
 @Composable
 fun HistoryScreen(viewModel: CardViewModel) {
     val searchHistory by viewModel.searchHistory.collectAsState()
-    
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -44,7 +44,7 @@ fun HistoryScreen(viewModel: CardViewModel) {
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
-            
+
             if (searchHistory.isNotEmpty()) {
                 Button(
                     onClick = { viewModel.clearHistory() },
@@ -56,9 +56,9 @@ fun HistoryScreen(viewModel: CardViewModel) {
                 }
             }
         }
-        
+
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         if (searchHistory.isEmpty()) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -109,9 +109,9 @@ private fun HistoryCardItem(card: Card) {
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            
+
             Spacer(modifier = Modifier.height(4.dp))
-            
+
             card.brand?.let { brand ->
                 Text(
                     text = "Бренд: $brand",
@@ -119,7 +119,7 @@ private fun HistoryCardItem(card: Card) {
                     color = Color.Gray
                 )
             }
-            
+
             card.bank?.name?.let { bankName ->
                 Text(
                     text = "Банк: $bankName",
@@ -127,7 +127,7 @@ private fun HistoryCardItem(card: Card) {
                     color = Color.DarkGray
                 )
             }
-            
+
             card.country?.name?.let { countryName ->
                 Text(
                     text = "Страна: $countryName",

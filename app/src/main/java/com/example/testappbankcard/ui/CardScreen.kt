@@ -39,7 +39,7 @@ enum class Screen {
 @Composable
 fun CardScreen(viewModel: CardViewModel) {
     var currentScreen by remember { mutableStateOf(Screen.SEARCH) }
-    
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -54,7 +54,7 @@ fun CardScreen(viewModel: CardViewModel) {
                 Screen.HISTORY -> HistoryScreen(viewModel = viewModel)
             }
         }
-        
+
         BottomNavigation(
             currentScreen = currentScreen,
             onScreenChange = { currentScreen = it }
@@ -66,7 +66,7 @@ fun CardScreen(viewModel: CardViewModel) {
 private fun SearchContent(viewModel: CardViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     var cardNumber by remember { mutableStateOf("") }
-    
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -78,9 +78,9 @@ private fun SearchContent(viewModel: CardViewModel) {
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )
-        
+
         Spacer(modifier = Modifier.height(24.dp))
-        
+
         OutlinedTextField(
             value = cardNumber,
             onValueChange = { cardNumber = it },
@@ -89,9 +89,9 @@ private fun SearchContent(viewModel: CardViewModel) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true
         )
-        
+
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         Button(
             onClick = { viewModel.loadCardInfo(cardNumber) },
             modifier = Modifier.fillMaxWidth(),
@@ -99,9 +99,9 @@ private fun SearchContent(viewModel: CardViewModel) {
         ) {
             Text("Найти информацию")
         }
-        
+
         Spacer(modifier = Modifier.height(24.dp))
-        
+
         when (uiState) {
             is CardUiState.Initial -> {
                 Text(
@@ -109,15 +109,15 @@ private fun SearchContent(viewModel: CardViewModel) {
                     fontSize = 16.sp
                 )
             }
-            
+
             is CardUiState.Loading -> {
                 LoadingIndicator()
             }
-            
+
             is CardUiState.Success -> {
                 CardInfoCard(card = (uiState as CardUiState.Success).card)
             }
-            
+
             is CardUiState.Error -> {
                 ErrorView(
                     message = (uiState as CardUiState.Error).message,
@@ -171,7 +171,7 @@ private fun BottomNavigation(
                         color = if (currentScreen == Screen.SEARCH) Color.White else Color.Black
                     )
                 }
-                
+
                 Button(
                     onClick = { onScreenChange(Screen.HISTORY) },
                     modifier = Modifier

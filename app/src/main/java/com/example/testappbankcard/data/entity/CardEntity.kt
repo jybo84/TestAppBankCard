@@ -34,7 +34,7 @@ data class CardEntity(
             )
         )
     }
-    
+
     companion object {
         fun fromCard(card: Card, cardNumber: String): CardEntity {
             return CardEntity(
@@ -48,4 +48,3 @@ data class CardEntity(
         }
     }
 }
-

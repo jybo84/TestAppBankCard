@@ -41,24 +41,24 @@ fun CardInfoCard(card: Card) {
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            
+
             Spacer(modifier = Modifier.height(16.dp))
-            
+
             InfoRow("Платёжая система", card.scheme.ifEmpty { "Не указано" })
             InfoRow("Тип", card.type ?: "Не указано")
             InfoRow("Бренд", card.brand ?: "Не указано")
-            
+
             Spacer(modifier = Modifier.height(8.dp))
             Divider()
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             Text(
                 text = "Страна",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            
+
             card.country?.let { country ->
                 InfoRow("Название", country.name ?: "Не указано")
                 InfoRow("Валюта", country.currency ?: "Не указано")
@@ -66,18 +66,18 @@ fun CardInfoCard(card: Card) {
                 InfoRow("Название", "Не указано")
                 InfoRow("Валюта", "Не указано")
             }
-            
+
             Spacer(modifier = Modifier.height(8.dp))
             Divider()
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             Text(
                 text = "Банк",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            
+
             card.bank?.let { bank ->
                 InfoRow("Название", bank.name ?: "Не указано")
                 InfoRow("Город", bank.city ?: "Не указано")
@@ -114,4 +114,3 @@ private fun InfoRow(label: String, value: String) {
         )
     }
 }
-
