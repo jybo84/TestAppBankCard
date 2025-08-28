@@ -1,8 +1,8 @@
 package com.example.testappbankcard.ui
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testappbankcard.CardApplication
 import com.example.testappbankcard.data.CardRepository
 import com.example.testappbankcard.data.database.CardDatabase
 import com.example.testappbankcard.data.repository.CardLocalRepository
@@ -13,9 +13,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CardViewModel(application: Application) : AndroidViewModel(application) {
+class CardViewModel : ViewModel() {
 
-    private val database = CardDatabase.getDatabase(application)
+    // Используем Application из CardApplication
+    private val database = CardDatabase.getDatabase(CardApplication.instance)
     private val localRepository = CardLocalRepository(database.cardDao())
     private val repository = CardRepository(localRepository)
 
@@ -81,7 +82,6 @@ class CardViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     init {
-
         loadHistoryFromLocal()
     }
 }
