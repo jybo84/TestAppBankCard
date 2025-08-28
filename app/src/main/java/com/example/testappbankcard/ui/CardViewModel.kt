@@ -2,23 +2,20 @@ package com.example.testappbankcard.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testappbankcard.CardApplication
 import com.example.testappbankcard.data.CardRepository
-import com.example.testappbankcard.data.database.CardDatabase
-import com.example.testappbankcard.data.repository.CardLocalRepository
 import com.example.testappbankcard.model.Card
 import com.example.testappbankcard.ui.state.CardUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CardViewModel : ViewModel() {
-
-    // Используем Application из CardApplication
-    private val database = CardDatabase.getDatabase(CardApplication.instance)
-    private val localRepository = CardLocalRepository(database.cardDao())
-    private val repository = CardRepository(localRepository)
+@HiltViewModel
+class CardViewModel @Inject constructor(
+    private val repository: CardRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<CardUiState>(CardUiState.Initial)
     val uiState: StateFlow<CardUiState> = _uiState.asStateFlow()
@@ -85,4 +82,3 @@ class CardViewModel : ViewModel() {
         loadHistoryFromLocal()
     }
 }
-

@@ -13,4 +13,3 @@ interface ApiService {
     ): Response<Card>
 
 }
-

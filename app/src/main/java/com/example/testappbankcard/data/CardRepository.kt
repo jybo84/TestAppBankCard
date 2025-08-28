@@ -11,13 +11,13 @@ class CardRepository(
     suspend fun loadCardInfoFromNet(number: String): Response<Card> {
         return ApiFactory.retrofit.loadCardData(number)
     }
-    
+
     suspend fun saveCardToLocal(card: Card, cardNumber: String) {
         localRepository.saveCard(card, cardNumber)
     }
-    
+
     fun getLocalCards() = localRepository.getAllCards()
-    
+
     suspend fun clearLocalCards() {
         localRepository.clearAllCards()
     }

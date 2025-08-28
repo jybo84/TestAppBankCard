@@ -1,6 +1,5 @@
 package com.example.testappbankcard
 
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,7 +12,9 @@ import androidx.compose.ui.Modifier
 import com.example.testappbankcard.ui.CardScreen
 import com.example.testappbankcard.ui.CardViewModel
 import com.example.testappbankcard.ui.theme.TestAppBankCardTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,4 +33,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
