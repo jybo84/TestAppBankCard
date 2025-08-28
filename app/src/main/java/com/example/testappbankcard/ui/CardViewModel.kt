@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 
 class CardViewModel : ViewModel() {
 
-    // Используем Application из CardApplication
     private val database = CardDatabase.getDatabase(CardApplication.instance)
     private val localRepository = CardLocalRepository(database.cardDao())
     private val repository = CardRepository(localRepository)

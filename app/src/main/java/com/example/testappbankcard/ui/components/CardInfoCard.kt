@@ -44,7 +44,7 @@ fun CardInfoCard(card: Card) {
             
             Spacer(modifier = Modifier.height(16.dp))
             
-            InfoRow("Схема", card.scheme.ifEmpty { "Не указано" })
+            InfoRow("Платёжая система", card.scheme.ifEmpty { "Не указано" })
             InfoRow("Тип", card.type ?: "Не указано")
             InfoRow("Бренд", card.brand ?: "Не указано")
             
