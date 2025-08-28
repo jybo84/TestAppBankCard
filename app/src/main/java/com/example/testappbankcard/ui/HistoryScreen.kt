@@ -94,7 +94,7 @@ private fun HistoryCardItem(card: Card) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFF8F9FA)
+            containerColor = Color(0xFFE6F9FA)
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 4.dp
@@ -103,28 +103,22 @@ private fun HistoryCardItem(card: Card) {
         Column(
             modifier = Modifier.padding(12.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = card.scheme.ifEmpty { "Неизвестная система" },
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-                
-                card.brand?.let { brand ->
-                    Text(
-                        text = brand,
-                        fontSize = 14.sp,
-                        color = Color.Gray
-                    )
-                }
-            }
+            Text(
+                text = card.scheme.ifEmpty { "Неизвестная система" },
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
             
             Spacer(modifier = Modifier.height(4.dp))
+            
+            card.brand?.let { brand ->
+                Text(
+                    text = "Бренд: $brand",
+                    fontSize = 14.sp,
+                    color = Color.Gray
+                )
+            }
             
             card.bank?.name?.let { bankName ->
                 Text(

@@ -8,3 +8,4 @@ sealed class CardUiState {
     data class Success(val card: Card) : CardUiState()
     data class Error(val message: String) : CardUiState()
 }
+
