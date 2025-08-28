@@ -24,7 +24,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val viewModel: CardViewModel by viewModels()
+                    val viewModel: CardViewModel by viewModels { 
+                        object : androidx.lifecycle.ViewModelProvider.Factory {
+                            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+                                if (modelClass.isAssignableFrom(CardViewModel::class.java)) {
+                                    @Suppress("UNCHECKED_CAST")
+                                    return CardViewModel(application) as T
+                                }
+                                throw IllegalArgumentException("Unknown ViewModel class")
+                            }
+                        }
+                    }
                     CardScreen(viewModel)
                 }
             }
